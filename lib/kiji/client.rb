@@ -28,6 +28,7 @@ module Kiji
         c.headers['User-Agent'] = 'SmartHR v0.0.1'
         c.headers['x-eGovAPI-SoftwareID'] = software_id
         c.headers['x-eGovAPI-AccessKey'] = access_key unless access_key.nil?
+        c.response :raise_error
       end
     end
 
@@ -51,6 +52,13 @@ module Kiji
 
       signer.sign!(issuer_serial: true)
       signer
+    end
+
+    def with_error_handling
+      yield
+    rescue Faraday::ClientError, Faraday::ServerError => e
+      xml = Nokogiri::XML(e.response[:body])
+      raise KijiError, xml.at_xpath('//Message')&.text
     end
   end
 end

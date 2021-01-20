@@ -15,25 +15,35 @@ module Kiji
         end
       end
 
-      connection.post('/shinsei/1/access/apply') do |req|
-        req.body = appl_data.to_xml
+      with_error_handling do
+        connection.post('/shinsei/1/access/apply') do |req|
+          req.body = appl_data.to_xml
+        end
       end
     end
 
     def sended_applications_by_id(send_number)
-      connection.get("/shinsei/1/access/apply;id=#{send_number}")
+      with_error_handling do
+        connection.get("/shinsei/1/access/apply;id=#{send_number}")
+      end
     end
 
     def sended_applications_by_date(from, to)
-      connection.get("/shinsei/1/access/apply;date=#{from}-#{to}")
+      with_error_handling do
+        connection.get("/shinsei/1/access/apply;date=#{from}-#{to}")
+      end
     end
 
     def arrived_applications(send_number)
-      connection.get("/shinsei/1/access/apply/#{send_number}")
+      with_error_handling do
+        connection.get("/shinsei/1/access/apply/#{send_number}")
+      end
     end
 
     def reference(arrive_id)
-      connection.get("/shinsei/1/access/reference/#{arrive_id}")
+      with_error_handling do
+        connection.get("/shinsei/1/access/reference/#{arrive_id}")
+      end
     end
 
     def withdraw(arrive_id, file_data)
@@ -48,13 +58,17 @@ module Kiji
         end
       end
 
-      connection.post('/shinsei/1/access/withdrawal') do |req|
-        req.body = appl_data.to_xml
+      with_error_handling do
+        connection.post('/shinsei/1/access/withdrawal') do |req|
+          req.body = appl_data.to_xml
+        end
       end
     end
 
     def amends(arrive_id)
-      connection.get("/shinsei/1/access/amend/#{arrive_id}")
+      with_error_handling do
+        connection.get("/shinsei/1/access/amend/#{arrive_id}")
+      end
     end
 
     def reamend(arrive_id, file_data)
@@ -69,8 +83,10 @@ module Kiji
         end
       end
 
-      connection.post('/shinsei/1/access/reamend') do |req|
-        req.body = appl_data.to_xml
+      with_error_handling do
+        connection.post('/shinsei/1/access/reamend') do |req|
+          req.body = appl_data.to_xml
+        end
       end
     end
 
@@ -90,8 +106,10 @@ module Kiji
         end
       end
 
-      connection.post('/shinsei/1/access/partamend') do |req|
-        req.body = appl_data.to_xml
+      with_error_handling do
+        connection.post('/shinsei/1/access/partamend') do |req|
+          req.body = appl_data.to_xml
+        end
       end
     end
 
@@ -107,17 +125,23 @@ module Kiji
         end
       end
 
-      connection.post('/shinsei/1/access/amendapply') do |req|
-        req.body = appl_data.to_xml
+      with_error_handling do
+        connection.post('/shinsei/1/access/amendapply') do |req|
+          req.body = appl_data.to_xml
+        end
       end
     end
 
     def notices(arrive_id)
-      connection.get("/shinsei/1/access/notice/#{arrive_id}")
+      with_error_handling do
+        connection.get("/shinsei/1/access/notice/#{arrive_id}")
+      end
     end
 
     def officialdocument(arrive_id, notice_sub_id)
-      connection.get("/shinsei/1/access/officialdocument/#{arrive_id}/#{notice_sub_id}")
+      with_error_handling do
+        connection.get("/shinsei/1/access/officialdocument/#{arrive_id}/#{notice_sub_id}")
+      end
     end
 
     def done_officialdocument(arrive_id, notice_sub_id)
@@ -130,8 +154,10 @@ module Kiji
         end
       end
 
-      connection.put('/shinsei/1/access/officialdocument') do |req|
-        req.body = appl_data.to_xml
+      with_error_handling do
+        connection.put('/shinsei/1/access/officialdocument') do |req|
+          req.body = appl_data.to_xml
+        end
       end
     end
 
@@ -149,13 +175,17 @@ module Kiji
         end
       end
 
-      connection.post('/shinsei/1/access/officialdocument/verify') do |req|
-        req.body = appl_data.to_xml
+      with_error_handling do
+        connection.post('/shinsei/1/access/officialdocument/verify') do |req|
+          req.body = appl_data.to_xml
+        end
       end
     end
 
     def comment(arrive_id, notice_sub_id)
-      connection.get("/shinsei/1/access/comment/#{arrive_id}/#{notice_sub_id}")
+      with_error_handling do
+        connection.get("/shinsei/1/access/comment/#{arrive_id}/#{notice_sub_id}")
+      end
     end
 
     def done_comment(arrive_id, notice_sub_id)
@@ -168,17 +198,23 @@ module Kiji
         end
       end
 
-      connection.put('/shinsei/1/access/comment') do |req|
-        req.body = appl_data.to_xml
+      with_error_handling do
+        connection.put('/shinsei/1/access/comment') do |req|
+          req.body = appl_data.to_xml
+        end
       end
     end
 
     def banks
-      connection.get('/shinsei/1/access/bank')
+      with_error_handling do
+        connection.get('/shinsei/1/access/bank')
+      end
     end
 
     def payments(arrive_id)
-      connection.get("/shinsei/1/access/payment/#{arrive_id}")
+      with_error_handling do
+        connection.get("/shinsei/1/access/payment/#{arrive_id}")
+      end
     end
   end
 end

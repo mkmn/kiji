@@ -9,8 +9,10 @@ module Kiji
         end
       end
 
-      connection.post('/shinsei/1/authentication/user') do |req|
-        req.body = sign(appl_data).to_xml
+      with_error_handling do
+        connection.post('/shinsei/1/authentication/user') do |req|
+          req.body = sign(appl_data).to_xml
+        end
       end
     end
 
@@ -23,8 +25,10 @@ module Kiji
         end
       end
 
-      connection.post('/shinsei/1/authentication/login') do |req|
-        req.body = sign(appl_data).to_xml
+      with_error_handling do
+        connection.post('/shinsei/1/authentication/login') do |req|
+          req.body = sign(appl_data).to_xml
+        end
       end
     end
 
@@ -40,8 +44,10 @@ module Kiji
         end
       end
 
-      connection.post('/shinsei/1/authentication/certificate/append') do |req|
-        req.body = sign(appl_data).to_xml
+      with_error_handling do
+        connection.post('/shinsei/1/authentication/certificate/append') do |req|
+          req.body = sign(appl_data).to_xml
+        end
       end
     end
 
@@ -57,8 +63,10 @@ module Kiji
         end
       end
 
-      connection.post('/shinsei/1/authentication/certificate/update') do |req|
-        req.body = sign(appl_data).to_xml
+      with_error_handling do
+        connection.post('/shinsei/1/authentication/certificate/update') do |req|
+          req.body = sign(appl_data).to_xml
+        end
       end
     end
 
@@ -74,8 +82,10 @@ module Kiji
         end
       end
 
-      connection.post('/shinsei/1/authentication/certificate/delete') do |req|
-        req.body = sign(appl_data).to_xml
+      with_error_handling do
+        connection.post('/shinsei/1/authentication/certificate/delete') do |req|
+          req.body = sign(appl_data).to_xml
+        end
       end
     end
   end
